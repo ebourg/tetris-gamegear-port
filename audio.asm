@@ -35,23 +35,23 @@ NoiseSFXContinuePointers::
     dw ContinueLiftoffSFX
 
 MusicPointers:: ; TODO
-    dw $6F3F    ;  1 - Top Score
-    dw $6F4A    ;  2 - Stage clear
-    dw $6F55    ;  3 - Title screen
-    dw $6F60    ;  4 - Game over
-    dw $6F6B    ;  5 - Type A - Korobeiniki
-    dw $6F76    ;  6 - Type B - ?
-    dw $6F81    ;  7 - Type C - Bach, French Suite №3 in Bm, Menuet
-    dw $6F8C    ;  8 - Danger, March of the Toreadors from Carmen
-    dw $6F97    ;  9 - Multiplayer Round over
-    dw $6FA2    ;  A - Type B Jingle #1
-    dw $6FAD    ;  B - Type B Jingle #2
-    dw $6FB8    ;  C - Type B Jingle #3
-    dw $6FC3    ;  D - Type B Jingle #4
-    dw $6FCE    ;  E - Type B Jingle #5
-    dw $6FD9    ;  F - Type B Jingle #6
-    dw $6FE4    ; 10 - Rocket launch
-    dw $6FEF    ; 11 - Multiplayer victory
+    dw Song_TopScore             ;  1 - Top Score
+    dw Song_StageClear           ;  2 - Stage clear
+    dw Song_TitleScreen          ;  3 - Title screen
+    dw Song_GameOver             ;  4 - Game over
+    dw Song_TypeA                ;  5 - Type A - Korobeiniki
+    dw Song_TypeB                ;  6 - Type B - ?
+    dw Song_TypeC                ;  7 - Type C - Bach, French Suite №3 in Bm, Menuet
+    dw Song_Danger               ;  8 - Danger, March of the Toreadors from Carmen
+    dw Song_MultiplayerRoundOver ;  9 - Multiplayer Round over
+    dw Song_TypeBJingle1         ;  A - Type B Jingle #1
+    dw Song_TypeBJingle2         ;  B - Type B Jingle #2
+    dw Song_TypeBJingle3         ;  C - Type B Jingle #3
+    dw Song_TypeBJingle4         ;  D - Type B Jingle #4
+    dw Song_TypeBJingle5         ;  E - Type B Jingle #5
+    dw Song_TypeBJingle6         ;  F - Type B Jingle #6
+    dw Song_RocketLaunch         ; 10 - Rocket launch
+    dw Song_MultiplayerVictory   ; 11 - Multiplayer victory
 
 DoNothing::
     ret
