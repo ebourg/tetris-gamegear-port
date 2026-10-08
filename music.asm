@@ -4,7 +4,7 @@ SECTION "Music", ROM0[$6F3F]
 
 Song_6F3F::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7CF9
 	dw Channel2_7CFF
 	dw Channel3_7D11
@@ -12,7 +12,7 @@ Song_6F3F::
 
 Song_6F4A::
 	db $00
-	dw $6F05
+	dw NoteLengths2
 	dw Channel1_7E48
 	dw Channel2_7E44
 	dw Channel3_7E4A
@@ -20,7 +20,7 @@ Song_6F4A::
 
 Song_6F55::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_763B
 	dw Channel2_7633
 	dw Channel3_7641
@@ -28,7 +28,7 @@ Song_6F55::
 
 Song_6F60::
 	db $00
-	dw $6EF9
+	dw NoteLengths1
 	dw Channel1_7600
 	dw Channel2_75FC
 	dw Channel3_7602
@@ -36,7 +36,7 @@ Song_6F60::
 
 Song_6F6B::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_714C
 	dw Channel2_7142
 	dw Channel3_7156
@@ -44,7 +44,7 @@ Song_6F6B::
 
 Song_6F76::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_72C6
 	dw Channel2_72B8
 	dw Channel3_72D4
@@ -52,7 +52,7 @@ Song_6F76::
 
 Song_6F81::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7008
 	dw Channel2_6FFA
 	dw $0000
@@ -60,7 +60,7 @@ Song_6F81::
 
 Song_6F8C::
 	db $00
-	dw $6F05
+	dw NoteLengths2
 	dw Channel1_7E9D
 	dw Channel2_7E91
 	dw Channel3_7EA9
@@ -68,7 +68,7 @@ Song_6F8C::
 
 Song_6F97::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7C28
 	dw Channel2_7C24
 	dw Channel3_7C2A
@@ -76,7 +76,7 @@ Song_6F97::
 
 Song_6FA2::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw $0000
 	dw Channel2_7A00
 	dw $0000
@@ -84,7 +84,7 @@ Song_6FA2::
 
 Song_6FAD::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw $0000
 	dw Channel2_7A26
 	dw Channel3_7A2A
@@ -92,7 +92,7 @@ Song_6FAD::
 
 Song_6FB8::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7A73
 	dw Channel2_7A6F
 	dw Channel3_7A75
@@ -100,7 +100,7 @@ Song_6FB8::
 
 Song_6FC3::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7ADF
 	dw Channel2_7AE3
 	dw Channel3_7AE5
@@ -108,7 +108,7 @@ Song_6FC3::
 
 Song_6FCE::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_7B65
 	dw Channel2_7B6B
 	dw Channel3_7B6F
@@ -116,7 +116,7 @@ Song_6FCE::
 
 Song_6FD9::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_786C
 	dw Channel2_7876
 	dw Channel3_787E
@@ -124,7 +124,7 @@ Song_6FD9::
 
 Song_6FE4::
 	db $00
-	dw $6F2B
+	dw NoteLengths4
 	dw Channel1_7543
 	dw Channel2_754B
 	dw Channel3_7551
@@ -132,7 +132,7 @@ Song_6FE4::
 
 Song_6FEF::
 	db $00
-	dw $6F0E
+	dw NoteLengths3
 	dw Channel1_758D
 	dw Channel2_7595
 	dw Channel3_759B
