@@ -33,7 +33,10 @@ hSpriteRendererObjX::
 hSpriteRendererObjY::
     db
 
-;hFF94::
+; The OAM attributes of the object being written out.
+; Bit 4 is the palette.
+; Bit 5 is the horizontal flip.
+hSpriteRendererObjFlags::
     db
 
 ; 0 = visible

@@ -6760,7 +6760,7 @@ _RenderSprites::
 .nextObject
     inc hl
     ldh a, [$86 + 6]    ; OAM flags?
-    ldh [$94], a
+    ldh [hSpriteRendererObjFlags], a
     ld a, [hl]
     cp a, $FF
     jr z, .label_2AA9
@@ -6768,7 +6768,7 @@ _RenderSprites::
     jr nz, .label_2AF4
     ldh a, [$86 + 6]
     xor a, $20
-    ldh [$94], a
+    ldh [hSpriteRendererObjFlags], a
     inc hl
     ld a, [hl]
     jr .calculateYCoordinate
@@ -6850,7 +6850,7 @@ _RenderSprites::
     ldi [hl], a
     ldh a, [$86 + 3]
     ldi [hl], a
-    ldh a, [$94]
+    ldh a, [hSpriteRendererObjFlags]
     ld b, a
     ldh a, [$86 + 5]
     or b
