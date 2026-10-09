@@ -4854,7 +4854,7 @@ tallySoftDropPoints::
     ld a, [de]
     ld h, a
     or l
-    jp z, Call_25D9._nextState         ; What? Bug
+    jp z, UpdateScoreTally._nextState  ; What? Bug
     dec hl              ; Decrement one from the number of points
     ld a, h             ; and store it again
     ld [de], a
@@ -4906,7 +4906,7 @@ UpdateScoreboard::
     ld bc, $9943
     ld hl, wTetrisCount
 .addScore
-    call Call_25D9
+    call UpdateScoreTally
     ret
 
 GameState_0C::
@@ -6114,10 +6114,10 @@ LockPieceIntoBackground::   ; TODO Name?
     ld [hl], $80
     ret
 
-Call_25D9::
+UpdateScoreTally::
     ld a, [wScoreTallyPhase]
     cp a, SCORE_TALLY_TOTAL
-    jr z, .label_2626
+    jr z, .printTotal
     push de
     ld a, [hl]
     or a                ; It's more typical to AND A
@@ -6134,19 +6134,19 @@ Call_25D9::
     ldi a, [hl]
     swap a
     and a, $0F
-    jr z, .label_25F7
+    jr z, .countPrinted
     ld [bc], a
-.label_25F7
+.countPrinted
     push bc
     ldh a, [hTypeBLevel]
     ld b, a
     inc b
-.label_25FC
+.addToLineTotal
     push hl
     call AddBCD
     pop hl
     dec b
-    jr nz, .label_25FC
+    jr nz, .addToLineTotal
     pop bc
     inc hl
     inc hl
@@ -6160,17 +6160,17 @@ Call_25D9::
     ld b, a
     inc b
     ld hl, wScore
-.label_2618
+.addToScore
     push hl
     call AddBCD
     pop hl
     dec b
-    jr nz, .label_2618
+    jr nz, .addToScore
     ld a, SCORE_TALLY_TOTAL
     ld [wScoreTallyPhase], a
     ret
 
-.label_2626
+.printTotal
     ld de, wScore+2
     ld hl, $9A25
     call PrintSixDigitNumber
