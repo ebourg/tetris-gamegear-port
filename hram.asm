@@ -45,7 +45,8 @@ hSpriteRendererSpriteHi::
 hSpriteRendererSpriteLo::
     db
 
-;hFF98::
+; The stage of locking a piece in place. See the LOCKDOWN_ constants.
+hLockdownState::
     db
 
 hDropTimer::

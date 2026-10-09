@@ -236,8 +236,8 @@ VBlank::
     ld a, [$C0CE]       ; Score needs updating?
     and a
     jr z, .out
-    ldh a, [$98]
-    cp a, 3
+    ldh a, [hLockdownState]
+    cp a, LOCKDOWN_CLEAR_ROWS
     jr nz, .out
     ld hl, _SCRN0 + SCRN_VX_B * 3 + 13
     call PrintTypeAScore
@@ -525,7 +525,7 @@ GameState_06::
     call DisableLCD
     xor a
     ldh [hDemoRecording], a
-    ldh [$98], a
+    ldh [hLockdownState], a
     ldh [$9C], a
     ldh [$9B], a
     ldh [hTopScorePointerHi], a   ; TODO
@@ -1219,7 +1219,7 @@ GameState_18::
     call DisableLCD
     xor a
     ld [$C210], a
-    ldh [$98], a
+    ldh [hLockdownState], a
     ldh [$9C], a
     ldh [$9B], a
     ldh [hTopScorePointerHi], a ; TODO
@@ -4128,7 +4128,7 @@ GameState_0A::
     call DisableLCD
     xor a
     ld [$C210], a
-    ldh [$98], a
+    ldh [hLockdownState], a
     ldh [$9C], a
     ldh [$9B], a
     ldh [hTopScorePointerHi], a   ; Why not the lower byte too?
@@ -4584,7 +4584,7 @@ GameState_01::
     call RenderActivePieceSprite
     call RenderPreviewPieceSprite
     xor a
-    ldh [$98], a
+    ldh [hLockdownState], a
     ldh [$9C], a
     call ClearLineClearsList
     ld a, $87           ; This tile isn't used in any tetromino
@@ -5185,7 +5185,7 @@ DownHeld::
     ldh a, [hTimer2]
     and a
     jr nz, DropPiece.out
-    ldh a, [$98]            ; Something to do with the locking process
+    ldh a, [hLockdownState] ; Something to do with the locking process
     and a
     jr nz, DropPiece.out
     ldh a, [hWipeCounter]   ; ?
@@ -5216,8 +5216,8 @@ DropPiece:: ; Name?
     ret
 
 .tryDrop
-    ldh a, [$98]        ; Lock in process?
-    cp a, 3
+    ldh a, [hLockdownState]; Lock in progress
+    cp a, LOCKDOWN_CLEAR_ROWS
     ret z
     ldh a, [hWipeCounter]
     and a               ; Don't do anything when the stack is falling after a
@@ -5238,8 +5238,8 @@ DropPiece:: ; Name?
     ld hl, $C201
     ld [hl], a
     call RenderActivePieceSprite
-    ld a, 1
-    ldh [$98], a        ; Start the locking process?
+    ld a, LOCKDOWN_TO_BACKGROUND
+    ldh [hLockdownState], a; Start the locking process
     ld [$C0C7], a
     ldh a, [hSoftDropCounter]
     and a
@@ -5306,8 +5306,8 @@ DropPiece:: ; Name?
     jr .clearSoftDropCounter
 
 CheckForCompletedRows::
-    ldh a, [$98]
-    cp a, 2
+    ldh a, [hLockdownState]
+    cp a, LOCKDOWN_CHECK_ROWS
     ret nz
     ld a, $02           ; Lock sound
     ld [wNewNoiseSFXID], a
@@ -5343,8 +5343,8 @@ CheckForCompletedRows::
     dec b
     jr nz, .rowLoop
 
-    ld a, 3
-    ldh [$98], a        ; Lockdown stage 3
+    ld a, LOCKDOWN_CLEAR_ROWS
+    ldh [hLockdownState], a
     dec a
     ldh [hTimer1], a
     ldh a, [$A0]
@@ -5417,8 +5417,8 @@ CheckForCompletedRows::
     jr .tallyCompletedLines
 
 AnimateLineClear::
-    ldh a, [$98]
-    cp a, 3
+    ldh a, [hLockdownState]
+    cp a, LOCKDOWN_CLEAR_ROWS
     ret nz
     ldh a, [hTimer1]
     and a
@@ -5470,8 +5470,8 @@ AnimateLineClear::
     ld a, 1             ; Start moving the blocks down
     ldh [hWipeCounter], a
 .completeLock
-    xor a
-    ldh [$98], a
+    xor a               ; a = LOCKDOWN_NONE
+    ldh [hLockdownState], a
     ret
 
 .flashBlocks
@@ -6074,8 +6074,8 @@ DetectCollision::
 
 ; Transforms the currently locking piece's objects into background tiles
 LockPieceIntoBackground::   ; TODO Name?
-    ldh a, [$98]
-    cp a, 1
+    ldh a, [hLockdownState]
+    cp a, LOCKDOWN_TO_BACKGROUND
     ret nz
     ld hl, $C010        ; Actieve piece OAM
     ld b, 4
@@ -6108,8 +6108,8 @@ LockPieceIntoBackground::   ; TODO Name?
     dec b
     jr nz, .loop
 .out
-    ld a, 2
-    ldh [$98], a
+    ld a, LOCKDOWN_CHECK_ROWS
+    ldh [hLockdownState], a
     ld hl, $C200
     ld [hl], $80
     ret
