@@ -42,7 +42,11 @@ wSoftDropPointsBCD::
 wScoreboardState::
     db
 
-ds $C0DE - $C0C6
+; How far the score tally has got. See the SCORE_TALLY_ constants.
+wScoreTallyPhase::
+    db
+
+ds $C0DE - $C0C7
 
 wHidePreviewPiece::
 	db

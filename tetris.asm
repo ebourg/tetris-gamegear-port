@@ -4712,8 +4712,8 @@ GameState_0B::
     ldh a, [hTimer1]
     and a
     ret nz
-    ld a, 1
-    ld [$C0C6], a
+    ld a, SCORE_TALLY_LINES
+    ld [wScoreTallyPhase], a
     ld a, 5
     ldh [hTimer1], a
     ret
@@ -4845,8 +4845,8 @@ GameState_23::
 
 ; ;-;
 tallySoftDropPoints::
-    xor a
-    ld [$C0C6], a
+    xor a               ; a = SCORE_TALLY_NONE
+    ld [wScoreTallyPhase], a
     ld de, wSoftDropPoints
     ld a, [de]
     ld l, a
@@ -4881,7 +4881,7 @@ tallySoftDropPoints::
     ret
 
 UpdateScoreboard::
-    ld a, [$C0C6]
+    ld a, [wScoreTallyPhase]
     and a
     ret z
     ld a, [wScoreboardState]
@@ -6115,8 +6115,8 @@ LockPieceIntoBackground::   ; TODO Name?
     ret
 
 Call_25D9::
-    ld a, [$C0C6]
-    cp a, 2
+    ld a, [wScoreTallyPhase]
+    cp a, SCORE_TALLY_TOTAL
     jr z, .label_2626
     push de
     ld a, [hl]
@@ -6166,8 +6166,8 @@ Call_25D9::
     pop hl
     dec b
     jr nz, .label_2618
-    ld a, $02
-    ld [$C0C6], a
+    ld a, SCORE_TALLY_TOTAL
+    ld [wScoreTallyPhase], a
     ret
 
 .label_2626
@@ -6176,8 +6176,8 @@ Call_25D9::
     call PrintSixDigitNumber
     ld a, $02
     ld [wNewSquareSFXID], a
-    xor a
-    ld [$C0C6], a
+    xor a               ; a = SCORE_TALLY_NONE
+    ld [wScoreTallyPhase], a
     ret
 
 .nextState
@@ -6185,8 +6185,8 @@ Call_25D9::
 ._nextState
     ld a, 33
     ldh [hTimer1], a
-    xor a
-    ld [$C0C6], a
+    xor a               ; a = SCORE_TALLY_NONE
+    ld [wScoreTallyPhase], a
     ld a, [wScoreboardState]
     inc a
     ld [wScoreboardState], a
