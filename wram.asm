@@ -46,7 +46,13 @@ wScoreboardState::
 wScoreTallyPhase::
     db
 
-ds $C0DE - $C0C7
+ds $C0CE - $C0C7
+
+; Flag set to 1 when the score displayed is out of date.
+wRedrawScore::
+    db
+
+ds $C0DE - $C0CF
 
 wHidePreviewPiece::
 	db

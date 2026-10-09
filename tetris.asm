@@ -233,7 +233,7 @@ VBlank::
     call UpdateScoreboard
     call hDMARoutine
     call DrawTopScoresToVRAM
-    ld a, [$C0CE]       ; Score needs updating?
+    ld a, [wRedrawScore]
     and a
     jr z, .out
     ldh a, [hLockdownState]
@@ -246,7 +246,7 @@ VBlank::
     ld hl, _SCRN1 + SCRN_VX_B * 3 + 13
     call PrintTypeAScore
     xor a
-    ld [$C0CE], a
+    ld [wRedrawScore], a
 .out
     ld hl, hFrameCounter
     inc [hl]
@@ -5302,7 +5302,7 @@ DropPiece:: ; Name?
     ld hl, wScore
     call AddBCD
     ld a, 1
-    ld [$C0CE], a
+    ld [wRedrawScore], a
     jr .clearSoftDropCounter
 
 CheckForCompletedRows::
